@@ -9,12 +9,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class DataReader {
-
-    public List<String> readValidLinesFromFile(String filePath) {
+    private static final String MARKER = "#";
+    public List<String> readValidLinesFromFile(String filePath) throws IOException {
         List<String> validLines = new ArrayList<>();
         try {
             validLines = Files.lines(Paths.get(filePath))
-                    .filter(line -> !line.startsWith("#") && !line.trim().isEmpty())
+                    .filter(line -> !line.startsWith(MARKER) && !line.trim().isEmpty())
                     .collect(Collectors.toList());
         } catch (IOException e) {
             throw new CalculationException("Error reading file: " + filePath);
@@ -22,4 +22,3 @@ public class DataReader {
         return validLines;
     }
 }
-

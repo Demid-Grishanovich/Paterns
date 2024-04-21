@@ -1,14 +1,26 @@
 package com.project.model;
 
+import com.project.util.IdGenerator;
+
+import java.util.Objects;
+
 public class Cone {
+
+    private final int id;
     private final Point vertex;
     private final double radius;
     private final double height;
 
-    public Cone(Point vertex, double radius, double height) {
+    public Cone( Point vertex, double radius, double height) {
+        this.id = IdGenerator.increment();
         this.vertex = vertex;
         this.radius = radius;
         this.height = height;
+    }
+
+
+    public int getId() {
+        return id;
     }
 
     public Point getVertex() {
@@ -25,7 +37,12 @@ public class Cone {
 
     @Override
     public String toString() {
-        return String.format("Cone(vertex=%s, radius=%s, height=%s)", vertex, radius, height);
+        return "Cone{" +
+                "id=" + id +
+                ", vertex=" + vertex +
+                ", radius=" + radius +
+                ", height=" + height +
+                '}';
     }
 
     @Override
@@ -40,13 +57,6 @@ public class Cone {
 
     @Override
     public int hashCode() {
-        int result = vertex.hashCode();
-        long temp;
-        temp = Double.doubleToLongBits(radius);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(height);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        return result;
+        return Objects.hash(id, vertex, radius, height);
     }
 }
-

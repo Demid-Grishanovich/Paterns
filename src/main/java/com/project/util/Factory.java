@@ -13,7 +13,6 @@ public class Factory {
             Point vertex = new Point(x, y, z);
             return new Cone(vertex, radius, height);
         }
-        // Теоретически, эта строка не нужна из-за выбрасывания исключения выше, но требуется для компиляции.
         throw new ValidationException("Invalid cone parameters");
     }
 }
